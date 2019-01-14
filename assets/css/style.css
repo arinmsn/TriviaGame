@@ -1,0 +1,35 @@
+.background_image { 
+    background: url("../images/palm-trees-1209185_1920.jpg") no-repeat center center fixed; 
+    /* -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover; */
+
+    background-size: cover; 
+    background-repeat:no-repeat;
+    background-position:center;
+    
+    height: 100%;
+    /* IE
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/palm-trees-1209185_1920.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/palm-trees-1209185_1920.jpg', sizingMethod='scale')"; */
+}
+
+body, html {
+    height: 100%;
+}
+
+.container {
+    position: relative;
+}
+
+.jumbotron {
+    text-align: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+}
+
+
+
+
+
