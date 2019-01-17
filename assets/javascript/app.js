@@ -68,16 +68,45 @@ var userSelect;
 var answered;
 var currentQuestion;
 
-/* Beginning */
+// The beginning 
 $('startBtn').on('click', function() {
     $(this).hide();
     BeginGame();
 });
 
-$('playAgain').on('click', function() {
+$('startAgain').on('click', function() {
     $(this).hide();
     BeginGame();
 });
 
+// Game starts 
+function BeginGame(){
+    $('#finalMessage').empty();
+    $('#correctAnswers').empty();
+    $('#incorrectAnswers').empty();
+    $('#unanswered').empty();
+    currentQuestion = 0;
+    correctAnswer   = 0;
+    incorrectAnswer = 0;
+    unanswered      = 0;
+    nextQuestion();
+}
+
+function countDown(){
+
+}
+
+function showCountDown() {
+
+}
+
+// Checking for answers
+function checkAnaswer() {
+
+}
+
+function scoreIt() {
+
+}
 
 
