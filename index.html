@@ -26,10 +26,24 @@
 
     <div class='background_image'>
 
+        <!-- Lower the jumbotron so Palm trees can be more easily seen -->
         <div class="container h-100 d-flex">
             <div class="jumbotron my-auto">
                 <h1 class="display-4"></h1>
                 <div class="lead"></div>
+
+                <!-- Trivia Questions -->
+                <div class="question"></div>
+                <div id = questionsLeft></div> 
+                <div class="answerList"></div>
+
+                <!-- Last page, scores are shown -->
+                <div id = "finalMessage"></div>
+                <div id="correctAnswers"></div>
+                <div id="incorrectAnswers"></div>
+                <div id="unanswered"></div>
+                <div id="startOverBtn"></div>
+
                 <button type="button" class="btn btn-primary btn-lg startBtn">Start</button>
             </div>
         </div>

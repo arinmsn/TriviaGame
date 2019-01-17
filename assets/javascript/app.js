@@ -56,6 +56,28 @@ var quizQuestions = [{  //Question #1
     answer: 
 }];
 
+/* Variables */
+var correctAnswer;
+var incorrectAnswer;
+var unanswered;
+
+var time;
+var seconds;
+
+var userSelect;
+var answered;
+var currentQuestion;
+
+/* Beginning */
+$('startBtn').on('click', function() {
+    $(this).hide();
+    BeginGame();
+});
+
+$('playAgain').on('click', function() {
+    $(this).hide();
+    BeginGame();
+});
 
 
 
