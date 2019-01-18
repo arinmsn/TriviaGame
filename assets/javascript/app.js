@@ -17,7 +17,7 @@
 var InstructionMsg = "You will have 5 minutes to answer the 10 questions.<br>"
     + "Simply match the correct quote statement with the title name.<br>"
     + "Press the start button to get started. Let's see how well you know these movies!<br>"
-    + "Good luck!<br>"
+    + "Good luck!";
 
 var quizQuestions = [{  //Question #1
     question: "I'll get you, my pretty, and your little dog, too!",  
@@ -76,10 +76,13 @@ var answered; // false?
 var currentQuestion;
 
 function welcomeScreen() {
+    $('h1').html("Welcome to the famous movie quote quiz!<br>");
     $('.instructMessage').html(InstructionMsg);
+    $('#radioBtns').css("display", "none");
     $('.startBtn').on('click', function() {
         $(this).hide();
         $('.instructMessage').css("display", "none");
+        $('h1').css("display", "none");
         BeginGame();
     });
 }
@@ -87,14 +90,14 @@ function welcomeScreen() {
 welcomeScreen();
 // The beginning 
 
-$('startAgain').on('click', function() {
+$('.startAgain').on('click', function() {
     $(this).hide();
     BeginGame();
 });
 
 // Game starts 
 function BeginGame(){
-    $('#finalMessage').empty();
+    // $('#finalMessage').empty();
     $('#correctAnswers').empty();
     $('#incorrectAnswers').empty();
     $('#unanswered').empty();
@@ -109,45 +112,58 @@ function nextQuestion(){
     answered = true;
 
     // Initializes the list of questions & answers
-    $('#questionsLeft').html( (currentQuestion+1) + " out of " + quizQuestions.length );
+    countDown();
+    
+    $('#questionsLeft').html('<p class="lead"><b>' + (currentQuestion + 1) + " out of " + quizQuestions.length + '</b></p>');
+    $('.question').html('<h3 class="lead">' + 'Question: " ' + quizQuestions[currentQuestion].question + ' "</h3>');
     for (var i; i < 4; i++){
+        
         var choices = $('<div>');
         choices.text(quizQuestions[currentQuestion].answerList[i]);
         choices.attr({'data-index': i});
         choices.addClass('thisChoice');
         $('.answerList').append(choices);
+        
     }
 
-    countDown();
+    
+
+    // When user clicks on the answer, pause the time and move on to next page
+    $('.thisChoice').on('click', function(){
+        userSelect = $(this).data('index');
+        clearInterval(time);
+        checkAnswer();
+    })
 
 }
 
 function countDown(){
-    seconds = 10;  // Testing with 10 seconds first, match it to instructions
-    $('#timeLeft').html('<p class="lead">' + seconds + ' Left </p>'); //may need to manually add class
+    seconds = 10;
+    $('#timeLeft').html('<p>' + seconds + ' seconds left </p>'); 
     answered = true;
-    time = setInterval(showCountDown, 1000);
+    time = setInterval(decrement, 1000);
 }
 
-function showCountDown() {
+function decrement() {
     seconds--;
-    $('#timeLeft').html('<p class="lead">' + seconds + ' Left </p>')
-    if (seconds < 1) {
+    $('#timeLeft').html(seconds + ' seconds left');
+
+    if (seconds === 0) {
         clearInterval(time);
         answered = false;
-        checkAnaswer();
+        checkAnswer();
     }
 }
 
 // Checking for answers
-function checkAnaswer() {
-
+function checkAnswer() {
+    
 }
 
 function scoreIt() {
     
     $('#timeLeft').empty();
-    
+
     $('#correctAnswers').html("Correctly answered: " + correctAnswer);
     $('#inncorrectAnswers').html("Incorrectly answered: "+ incorrectAnswer);
     $('#unanswered').html("Unanswered: " + unanswered);

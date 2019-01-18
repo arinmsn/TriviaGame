@@ -32,12 +32,12 @@
 
         <div class="container h-100 d-flex">
             <div class="jumbotron my-auto">
-                <h1 class="display-4"></h1>
+                <h1 class="display-5"></h1>
                 <div class="lead instructMessage"></div>    
 
                 <!-- Trivia Questions -->
-                <div id="TimeRemaining"></div>
-                <div id = questionsLeft></div>
+                <div id="timeLeft"></div>
+                <div id = "questionsLeft"></div>
                 <div class="question"></div> 
                 <div class="answerList"></div>
 
@@ -48,12 +48,38 @@
                 <div id="unanswered"></div>
                 <div id="startOverBtn"></div>
 
+                <!-- Radio Buttons for answer choices -->
+                <div id="radioBtns">
+
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadioInline1"></label>
+                </div>
+                
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadioInline2"></label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadioInline3"></label>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
+                    <label class="custom-control-label" for="customRadioInline4"></label>
+                </div>
+
+                </div>
+
                 <button type="button" class="btn btn-primary btn-lg startBtn">Start</button>
             </div>
         </div>
 
     </div>
-
+    
+    
 
     <!-- <h1>Welcome to the famous movie quote quiz!</h1>
     <p class="lead">
