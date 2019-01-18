@@ -19,7 +19,8 @@ body, html {
 }
 
 .container {
-    position: relative;
+    /* position: relative; */
+    flex-direction: column;
 }
 
 .jumbotron {
@@ -31,6 +32,14 @@ body, html {
     left: 50%; */
 }
 
+.thisChoice:hover{
+	background-color: #202364;
+	color: white;
+	padding: 10px;
+
+.hideMessage {
+    display: none;
+}
 
 
 
