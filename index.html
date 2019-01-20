@@ -37,9 +37,16 @@
 
                 <!-- Trivia Questions -->
                 <div id="timeLeft"></div>
+                <div id="currentQuestion"></div>
                 <div id = "questionsLeft"></div>
                 <div class="question"></div> 
+                <br><br>
                 <div class="answerList"></div>
+
+                <div class="row justify-content-center d-flex radioBtns">
+                    <div class="col-sm-4 "><div id="dataList"> </div></div>
+                    <!-- <div class="col-sm-4"><div id="radioBtn"></div></div> -->
+                </div>
 
                 <!-- Last page, scores are shown -->
                 <div id = "finalMessage"></div>
@@ -51,25 +58,27 @@
                 <!-- Radio Buttons for answer choices -->
                 <div id="radioBtns">
 
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadioInline1"></label>
-                </div>
-                
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadioInline2"></label>
-                </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="multipleChoice1" name="question" class="custom-control-input">
+                        <label class="custom-control-label answerBlock" for="multipleChoice1"></label>
+                    </div>
+                    
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="multipleChoice2" name="question" class="custom-control-input">
+                        <label class="custom-control-label answerBlock" for="multipleChoice2"></label>
+                    </div>
 
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadioInline3"></label>
-                </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="multipleChoice3" name="question" class="custom-control-input">
+                        <label class="custom-control-label answerBlock" for="multipleChoice3"></label>
+                    </div>
 
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadioInline4"></label>
-                </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="multipleChoice4" name="question" class="custom-control-input">
+                        <label class="custom-control-label answerBlock" for="multipleChoice4"></label>
+                    </div>
+
+                    
 
                 </div>
 
@@ -79,14 +88,6 @@
 
     </div>
     
-    
-
-    <!-- <h1>Welcome to the famous movie quote quiz!</h1>
-    <p class="lead">
-    You will have 5 minutes to answer the 10 questions.
-    Simply match the correct quote statement with the title name.
-    Press the start button to get started. Let's see how well you know these movies!
-    Good luck!</p> -->
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

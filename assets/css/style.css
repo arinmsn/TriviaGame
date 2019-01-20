@@ -9,9 +9,6 @@
     background-position:center;
     
     height: 100%;
-    /* IE
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/palm-trees-1209185_1920.jpg', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/palm-trees-1209185_1920.jpg', sizingMethod='scale')"; */
 }
 
 body, html {
@@ -32,13 +29,23 @@ body, html {
     left: 50%; */
 }
 
-.thisChoice:hover{
-	background-color: #202364;
-	color: white;
-	padding: 10px;
+/* .userSelect:hover{
+    background-color: #7eeb17;
+    color: white;
+    padding: 10px;
+} */
 
-.hideMessage {
+input[type=radio]:hover ~ div {
+    background: #7eeb17;
+ }
+
+.hideMessage, .container {
     display: none;
+}
+
+.lastSeconds {
+    font-weight: bold;
+    color: red;
 }
 
 

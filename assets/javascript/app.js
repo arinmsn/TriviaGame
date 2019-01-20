@@ -14,7 +14,8 @@
 // Need to track questions answered correctly, incorrectly, and missed (not answered)
 
 // Arrays for each question, possible answers, and correct answer 
-var InstructionMsg = "You will have 5 minutes to answer the 10 questions.<br>"
+
+var InstructionMsg = "You will have 10 seconds per question.<br>"
     + "Simply match the correct quote statement with the title name.<br>"
     + "Press the start button to get started. Let's see how well you know these movies!<br>"
     + "Good luck!";
@@ -72,7 +73,7 @@ var time;
 var seconds;
 
 var userSelect;
-var answered; // false?
+var answered; // 
 var currentQuestion;
 
 function welcomeScreen() {
@@ -83,20 +84,21 @@ function welcomeScreen() {
         $(this).hide();
         $('.instructMessage').css("display", "none");
         $('h1').css("display", "none");
-        BeginGame();
+        beginGame();
     });
 }
 
 welcomeScreen();
 // The beginning 
 
-$('.startAgain').on('click', function() {
+$('#startOverBtn').on('click', function() {
     $(this).hide();
-    BeginGame();
+    beginGame();
+
 });
 
 // Game starts 
-function BeginGame(){
+function beginGame(){
     // $('#finalMessage').empty();
     $('#correctAnswers').empty();
     $('#incorrectAnswers').empty();
@@ -109,65 +111,107 @@ function BeginGame(){
 }
 
 function nextQuestion(){
+    $('.jumbotron').css("display", "block");
     answered = true;
-
+    $('#correctedAnswer').empty();
     // Initializes the list of questions & answers
+    $('#questionsLeft').html('<p class="lead">' + (currentQuestion+1) + ' out of ' + quizQuestions.length + '</p>');
+    $('.question').html('<h3 class="lead">' + 'Question: " ' + quizQuestions[currentQuestion].question + ' "</h3>');
+    radioBtnGen();
+    // for (var i=0; i < quizQuestions[currentQuestion].answerList.length; i++) {
+    //     var choices = $('<div>');
+    //     choices.text(quizQuestions[currentQuestion].answerList[i]);
+    //     choices.attr({'data-index': 1});
+    //     choices.addClass('thisChoice');
+    //     $('.answerList').append(choices);
+    // }
+
+    /*    Radio buttons    */
+    // function readioGenerator(label) {
+    //     $radio = $('<input />', {type : "radio"});
+    //     var $label = $('<label />', {text : label});
+    //     var wrapper = $('<div />');
+    //     wrapper.append($label).append($radio);
+    //     $('div#after').append(wrapper);
+    // }
+
+    function radioBtnGen() {
+        var data= quizQuestions[currentQuestion].answerList;
+        var output="";
+        var userSelect;            //dataList
+    
+        for(var i=0; i< data.length; i++) {
+            userSelect=data[i];
+            output+= '<input type="radio" class="thisChoice" value='+userSelect+' data-index=1 name="box1">'  + '   ' +userSelect+ '   '+'<br><br>';
+            document.getElementById("dataList").innerHTML=output;
+        }
+    } 
+
+    // userChoices();
     countDown();
     
-    $('#questionsLeft').html('<p class="lead"><b>' + (currentQuestion + 1) + " out of " + quizQuestions.length + '</b></p>');
-    $('.question').html('<h3 class="lead">' + 'Question: " ' + quizQuestions[currentQuestion].question + ' "</h3>');
-    for (var i; i < 4; i++){
-        
-        var choices = $('<div>');
-        choices.text(quizQuestions[currentQuestion].answerList[i]);
-        choices.attr({'data-index': i});
-        choices.addClass('thisChoice');
-        $('.answerList').append(choices);
-        
-    }
-
-    
-
-    // When user clicks on the answer, pause the time and move on to next page
     $('.thisChoice').on('click', function(){
-        userSelect = $(this).data('index');
-        clearInterval(time);
-        checkAnswer();
-    })
-
+            userSelect = $(this).data('index');
+            clearInterval(time);
+            checkAnswer();
+    });
 }
 
 function countDown(){
     seconds = 10;
-    $('#timeLeft').html('<p>' + seconds + ' seconds left </p>'); 
+    $('#timeLeft').html('<p class="lead">' + seconds + ' seconds left </p>'); 
     answered = true;
     time = setInterval(decrement, 1000);
 }
 
 function decrement() {
     seconds--;
-    $('#timeLeft').html(seconds + ' seconds left');
-
-    if (seconds === 0) {
+    $('#timeLeft').html('<p class="lead">' + seconds + ' seconds left </p>');
+    if (seconds === 0) {               // <--- original one
         clearInterval(time);
         answered = false;
         checkAnswer();
     }
+
 }
 
 // Checking for answers
 function checkAnswer() {
-    
+    $('#currentQuestion').empty();
+    $('#questionsLeft').empty();
+    // Question page
+    $('.thisChoice').empty();
+    $('.question').empty();
+    $('#timeLeft').empty();
+    $('#dataList').empty();
+    $('.jumbotron').css("display", "none");
+
+    var rigthAnswerIndex = quizQuestions[currentQuestion].answer;
+
+    if ((userSelect == rigthAnswerIndex) && (answered == true)) {
+        correctAnswer++;
+    } else if ((userSelect != rigthAnswerIndex) && (answered == true)) {
+        incorrectAnswer++;
+    } else {
+        unanswered++;
+    }
+
+    if(currentQuestion == (quizQuestions.length-1)) {
+        setTimeout(scoreIt, 500);
+    } else {
+        currentQuestion++;
+        setTimeout(nextQuestion, 500);
+    }
+
 }
 
 function scoreIt() {
-    
+    $('.jumbotron').css("display", "block");
     $('#timeLeft').empty();
-
     $('#correctAnswers').html("Correctly answered: " + correctAnswer);
-    $('#inncorrectAnswers').html("Incorrectly answered: "+ incorrectAnswer);
+    $('#incorrectAnswers').html("Incorrectly answered: "+ incorrectAnswer);
     $('#unanswered').html("Unanswered: " + unanswered);
-    $('#startOverBtn').addClass('reset');
-    $('#startOverBtn').show();
-    $('#startOverBtn').html('Play again?');
+    // $('#startOverBtn').addClass('reset');
+    // $('#startOverBtn').show();
+    $('#startOverBtn').html('<button type="button" class="btn btn-primary">' + "Play Again?" + '</button>');
 }
